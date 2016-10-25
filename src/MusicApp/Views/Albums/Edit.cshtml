@@ -1,0 +1,20 @@
+﻿@model MusicApp.Models.Album
+
+@{
+    ViewBag["Title"] = "Edit";
+}
+
+<form asp-action="Edit" method="post">
+    <input asp-for="ArtistID" type="hidden" value="@Model.ArtistID" />
+    <input asp-for="Name" value="@Model.Name" />
+    <input asp-for="Bio" value="@Model.Bio" />
+    <input type="submit" value="Submit" />
+</form>
+
+@*<form asp-action="Create" method="post">
+    <input asp-for="Title" type="text" value="" />
+    <select asp-for="ArtistID" asp-items="ViewBag.Artists" value="" />
+    <select asp-for="GenreID" asp-items="ViewBag.Genres" value="" />
+    <input asp-for="Price" type="text" value="" />
+    <input type="submit" value="Submit" />
+</form>*@

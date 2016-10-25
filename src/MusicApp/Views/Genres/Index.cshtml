@@ -1,0 +1,21 @@
+﻿@model IEnumerable<MusicApp.Models.Genre>
+@{
+    ViewData["Title"] = "Genres";
+}
+<h2>Genres</h2>
+<a class="btn btn-default" asp-action="Create">Add Genre</a>
+<table class="table">
+    <thead>
+        <tr>
+            <th>Genre</th>
+        </tr>
+    </thead>
+    @foreach (var genre in Model)
+    {
+        <tr>
+            <td>@genre.Name</td>
+            <td><a class="btn btn-default" asp-action="Details">Details</a></td>
+        </tr>
+    }
+    </table>
+
