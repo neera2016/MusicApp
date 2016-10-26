@@ -42,9 +42,10 @@ namespace MusicApp.Controllers
             return View(artist);
         }
 
-        public IActionResult Edit()
+        public IActionResult Edit(int id)
         {
-            return View();
+            var artist = _context.Artists.SingleOrDefault(a => a.ArtistID == id);
+            return View(artist);
         }
 
         [HttpPost]
@@ -59,9 +60,10 @@ namespace MusicApp.Controllers
             return View(artist);
         }
 
-        public IActionResult Details()
+        public IActionResult Details(int id)
         {
-            return View();
+            var artist = _context.Artists.SingleOrDefault(a => a.ArtistID == id);
+            return View(artist);
         }
 
         [HttpPost]

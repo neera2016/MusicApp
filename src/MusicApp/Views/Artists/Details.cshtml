@@ -4,17 +4,17 @@
 }
 <h2>Artist Details</h2>
 
-<div class="row">
-    <label class="col-md-2">Artist: </label>
-    <div class="col-md-10">@Model.Name</div>
-</div>
-<div class="row">
-    <label class="col-md-2">Bio: </label>
-    <div class="col-md-10">@Model.Bio</div>
-</div>
-<table class="table">
-    <tr>
-        <th>Albums</th>
-    </tr>
-</table>
-<a class="btn btn-default" asp-action="Index">Back to List</a>
+<br />
+<br />
+    <div>
+        <input type="hidden" asp-for="ArtistID" />
+        Artist: <input asp-for="Name" value="@Model.Name" /><br />
+        <span asp-validation-for="Name" class="text-danger"></span><br />
+        Bio: <input asp-for="Bio" value="@Model.Bio" />
+        <br />
+        <br />
+    </div>
+    <div>
+        <a class="btn btn-info" asp-action="Edit" asp-route-id="ArtistID">Edit</a>
+        <a class="btn btn-default" asp-action="Index">Back to List</a>
+    </div>
