@@ -4,5 +4,11 @@
 }
 <h2>Details</h2>
 
+<br />
+<br />
 <div>Artist: @Model.Name</div>
 <div>Bio: @Model.Bio</div>
+<div>
+    <a class="btn btn-info" asp-action="Edit" asp-route-id="AlbumID">Edit</a>
+    <a class="btn btn-default" asp-action="Index">Back to List</a>
+</div>

@@ -22,6 +22,10 @@
             <td>@album.Artist.Name</td>
             <td>@album.Genre.Name</td>
             <td>@album.Price</td>
+            <td>
+                <a class="btn btn-default" asp-action="Details" asp-route-id="@album.AlbumID">Details</a>
+                <a class="btn btn-default" asp-action="Edit" asp-route-id="@album.AlbumID">Edit</a>
+            </td>
         </tr>
     }
     </table>

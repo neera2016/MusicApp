@@ -1,14 +1,15 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using System.ComponentModel.DataAnnotations;
 
 namespace MusicApp.Models
 {
     public class Album
     {
         public int AlbumID { get; set; }
+
+        [Required(ErrorMessage = "Album title is required.")]
         public string Title { get; set; }
+
+        [Required(ErrorMessage = "Price is required.")]
         public decimal Price { get; set; }
 
         //Foreign key
