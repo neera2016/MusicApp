@@ -5,12 +5,12 @@
 
 <h2>Delete this album?</h2>
 
-<p>
+<div class="form-group">
     Title: @Model.Title
-</p>
-<p>
     Artist: @Model.Artist.Name
-</p>
+    Genre: @Model.Genre.Name
+    Price: @Model.Price
+</div>
 
 <form asp-action="Delete" method="post">
     <input type="hidden" asp-for="AlbumID" value="@Model.AlbumID" />
