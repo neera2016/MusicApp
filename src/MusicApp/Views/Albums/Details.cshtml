@@ -6,8 +6,12 @@
 
 <br />
 <br />
-<div>Artist: @Model.Name</div>
-<div>Bio: @Model.Bio</div>
+<div>
+    Title: @Model.Title
+    Artist: @Model.Artist.Name
+    Genre: @Model.Genre.Name
+    Price: @Model.Price
+</div>
 <div>
     <a class="btn btn-info" asp-action="Edit" asp-route-id="AlbumID">Edit</a>
     <a class="btn btn-default" asp-action="Index">Back to List</a>
