@@ -2,6 +2,29 @@
 @{
     ViewData["Title"] = "Details";
 }
-<h2>Albums in this genre</h2>
-
-<div>@Model.Name</div>
+<h2>Albums in @Model.Name</h2>
+<input type="hidden" asp-for="GenreID" />
+<br />
+<br />
+<table class="table">
+    <thead>
+        <tr>
+            <th>Title</th>
+            <th>Artist</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var album in Model.Name)
+        {
+        <tr>
+            <td>@album.Title</td>
+            <td>@album.Artist.Name</td>
+        </tr>
+        }
+    </tbody>
+    <br />
+    <br />
+    <div>
+        <a class="btn btn-default" asp-action="Index">Back to List</a>
+    </div>
+</table>

@@ -42,9 +42,10 @@ namespace MusicApp.Controllers
             return View(genre);
         }
         
-        public IActionResult Details()
+        public IActionResult Details(int id)
         {
-            return View();
+            var genres = _context.Genres.SingleOrDefault(g => g.GenreID == id);
+            return View(genres);
         }
 
         [HttpPost]
