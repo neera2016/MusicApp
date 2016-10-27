@@ -1,15 +1,45 @@
 ﻿@model MusicApp.Models.Album
 
 @{ 
-    ViewBag["Title"] = "Create";
+    ViewData["Title"] = "Create";
 }
 <br />
 <br />
 
 <form asp-action="Create" method="post">
-    <input asp-for="Title" type="text" value="" />
-    <select asp-for="ArtistID" asp-items="ViewBag.Artists" value="" />
-    <select asp-for="GenreID" asp-items="ViewBag.Genres" value="" />
-    <input asp-for="Price" type="text" value="" />
-    <input type="submit" value="Submit" />
+    <div class="form-group">
+        <input type="hidden" asp-for="AlbumID" />
+        Title: <input asp-for="Title" type="text" value="" /><br />
+        @*<input type="hidden" asp-for="ArtistID" />*@
+        Artist: <input asp-for="Artist" value="" /><br />
+        <span asp-validation-for="Artist" class="text-danger"></span><br />
+        @*<input type="hidden" asp-for="GenreID" />*@
+        Genre: <input asp-for="Genre" value="" /><br />
+        Price: <input asp-for="Price" value="" />
+        <br />
+        <br />
+        <input type="submit" value="Submit" />
+    </div>
+    <div class="form-group">
+        <a class="btn btn-default" asp-action="Index">Back to List</a>
+    </div>
 </form>
+
+@*<form asp-action="Edit" method="post">
+        <div class="form-group">
+            <input type="hidden" asp-for="AlbumID" />
+            Title: <input asp-for="Title" value="@Model.Title" />
+            <input type="hidden" asp-for="ArtistID" />
+            Artist: <input asp-for="Artist" value="@Model.Artist.Name" /><br />
+            <span asp-validation-for="Artist" class="text-danger"></span><br />
+            <input type="hidden" asp-for="GenreID" />
+            Genre: <input asp-for="Genre" value="@Model.Genre.Name" /><br />
+            Price: <input asp-for="Price" value="@Model.Price" />
+            <br />
+            <br />
+            <input type="submit" value="Submit" />
+        </div>
+        <div class="form-group">
+            <a class="btn btn-default" asp-action="Index">Back to List</a>
+        </div>
+    </form>*@

@@ -31,23 +31,37 @@ namespace MusicApp.Controllers
         [HttpPost]
         public IActionResult Create(Album album)
         {
-            return View();
+            if (ModelState.IsValid)
+            {
+                _context.Albums.Add(album);
+                _context.SaveChanges();
+                return RedirectToAction("Index");
+            }
+            return View(album);
         }
 
-        public IActionResult Edit()
+        public IActionResult Edit(int id)
         {
-            return View();
+            var album = _context.Albums.SingleOrDefault(a => a.AlbumID == id);
+            return View(album);
         }
 
         [HttpPost]
         public IActionResult Edit(Album album)
         {
-            return View();
+            if (ModelState.IsValid)
+            {
+                _context.Albums.Update(album);
+                _context.SaveChanges();
+                return RedirectToAction("Index");
+            }
+            return View(album);
         }
 
-        public IActionResult Details()
+        public IActionResult Details(int id)
         {
-            return View();
+            var album = _context.Albums.SingleOrDefault(a => a.AlbumID == id);
+            return View(album);
         }
 
         [HttpPost]

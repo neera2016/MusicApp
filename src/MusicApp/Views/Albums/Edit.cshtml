@@ -12,6 +12,7 @@
         <input type="hidden" asp-for="ArtistID" />
         Artist: <input asp-for="Artist" value="@Model.Artist.Name" /><br />
         <span asp-validation-for="Artist" class="text-danger"></span><br />
+        <input type="hidden" asp-for="GenreID" />
         Genre: <input asp-for="Genre" value="@Model.Genre.Name" /><br />
         Price: <input asp-for="Price" value="@Model.Price" />
         <br />

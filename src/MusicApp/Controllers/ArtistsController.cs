@@ -69,13 +69,7 @@ namespace MusicApp.Controllers
         [HttpPost]
         public IActionResult Details(Artist artist)
         {
-            if (ModelState.IsValid)
-            {
-                _context.Artists.Update(artist);
-                _context.SaveChanges();
-                return RedirectToAction("Index");
-            }
-            return View(artist);
+            return View();
         }
     }
 }
