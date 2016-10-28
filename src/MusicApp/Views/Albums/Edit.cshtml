@@ -1,19 +1,18 @@
 ﻿@model MusicApp.Models.Album
 
 @{
-    ViewBag["Title"] = "Edit";
+    ViewData["Title"] = "Edit";
 }
+<h2>Edit Album</h2>
+
 <br />
 <br />
 <form asp-action="Edit" method="post">
     <div class="form-group">
         <input type="hidden" asp-for="AlbumID" />
-        Title: <input asp-for="Title" value="@Model.Title" />
-        <input type="hidden" asp-for="ArtistID" />
-        Artist: <input asp-for="Artist" value="@Model.Artist.Name" /><br />
-        <span asp-validation-for="Artist" class="text-danger"></span><br />
-        <input type="hidden" asp-for="GenreID" />
-        Genre: <input asp-for="Genre" value="@Model.Genre.Name" /><br />
+        Title: <input asp-for="Title" value="@Model.Title" /><br />
+        Artist: <select asp-for="ArtistID" asp-items="ViewBag.Artist"></select><br />
+        Genre: <select asp-for="GenreID" asp-items="ViewBag.Genre"></select><br />
         Price: <input asp-for="Price" value="@Model.Price" />
         <br />
         <br />
@@ -23,20 +22,3 @@
         <a class="btn btn-default" asp-action="Index">Back to List</a>
     </div>
 </form>
-
-@*<br />
-    <br />
-    <form asp-action="Edit" method="post">
-        <div class="form-group">
-            <input type="hidden" asp-for="ArtistID" />
-            Artist: <input asp-for="Name" value="@Model.Name" /><br />
-            <span asp-validation-for="Name" class="text-danger"></span><br />
-            Bio: <input asp-for="Bio" value="@Model.Bio" />
-            <br />
-            <br />
-            <input type="submit" value="Submit" />
-        </div>
-        <div class="form-group">
-            <a class="btn btn-default" asp-action="Index">Back to List</a>
-        </div>
-    </form>*@

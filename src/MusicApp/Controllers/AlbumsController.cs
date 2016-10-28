@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 using MusicApp.Models;
 using Microsoft.EntityFrameworkCore;
 using System.Linq;
+using Microsoft.AspNetCore.Mvc.Rendering;
 
 // For more information on enabling MVC for empty projects, visit http://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -19,12 +20,13 @@ namespace MusicApp.Controllers
         // GET: /<controller>/
         public IActionResult Index()
         {
-            var albums =  _context.Albums.ToList();
-            return View(albums);
+            return View(_context.Albums.Include(a => a.Artist).Include(g => g.Genre).ToList());
         }
 
         public IActionResult Create()
         {
+            ViewBag.Artist = new SelectList(_context.Artists.ToList(), "ArtistID", "Name");
+            ViewBag.Genre = new SelectList(_context.Genres.ToList(), "GenreID", "Name");
             return View();
         }
 
@@ -43,6 +45,8 @@ namespace MusicApp.Controllers
         public IActionResult Edit(int id)
         {
             var album = _context.Albums.SingleOrDefault(a => a.AlbumID == id);
+            ViewBag.Artist = new SelectList(_context.Artists.ToList(), "ArtistID", "Name");
+            ViewBag.Genre = new SelectList(_context.Genres.ToList(), "GenreID", "Name");
             return View(album);
         }
 
@@ -60,7 +64,7 @@ namespace MusicApp.Controllers
 
         public IActionResult Details(int id)
         {
-            var album = _context.Albums.SingleOrDefault(a => a.AlbumID == id);
+            var album = _context.Albums.Include(a => a.Artist).Include(g => g.Genre).SingleOrDefault(a => a.AlbumID == id);
             return View(album);
         }
 
@@ -70,9 +74,10 @@ namespace MusicApp.Controllers
             return View();
         }
 
-        public IActionResult Delete()
+        public IActionResult Delete(int id)
         {
-            return View();
+            var album = _context.Albums.Include(a => a.Artist).Include(g => g.Genre).SingleOrDefault(a => a.AlbumID == id);
+            return View(album);
         }
 
         [HttpPost]

@@ -7,14 +7,12 @@
 <br />
 <br />
 <div>
-    <input type="hidden" asp-for="Title" />
-    Title: <input asp-for="Title" value="@Model.Title" />@*<br />*@
-    <input type="hidden" asp-for="ArtistID" />
-    Artist: <input asp-for="Artist" value="@Model.Artist.Name" />
-    Artist Bio: <input asp-for="Artist.Bio" value="@Model.Artist.Bio" />
-    <input type="hidden" asp-for="GenreID" />
-    Genre: <input asp-for="Genre" value="@Model.Genre.Name"/>
-    Price: <input asp-for="Price" value="@Model.Price"/>
+    <input type="hidden" asp-for="AlbumID" />
+    Title: @Model.Title<br />
+    Artist: @Model.Artist.Name<br />
+    Artist Bio: @Model.Artist.Bio<br />
+    Genre: @Model.Genre.Name<br />
+    Price: @Model.Price
     <br />
     <br />
 </div>

@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using MusicApp.Models;
+using Microsoft.EntityFrameworkCore;
 
 // For more information on enabling MVC for empty projects, visit http://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -44,8 +45,9 @@ namespace MusicApp.Controllers
         
         public IActionResult Details(int id)
         {
-            var genres = _context.Genres.SingleOrDefault(g => g.GenreID == id);
-            return View(genres);
+            var albums = _context.Albums.Where(a => a.GenreID == id);
+            ViewBag.Albums = albums.ToList();
+            return View(_context.Genres.SingleOrDefault(g => g.GenreID == id));
         }
 
         [HttpPost]
