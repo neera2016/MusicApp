@@ -4,16 +4,11 @@
 }
 
 <h2>Delete this album?</h2>
-
+<div>Title: @Model.Title</div>
+<div>Artist: @Model.Artist.Name</div>
 <form asp-action="Delete" method="post">
     <div class="form-group">
         <input type="hidden" asp-for="AlbumID" value="@Model.AlbumID" />
-        Title: @Model.Title
-        Artist: @Model.Artist.Name
-        Genre: @Model.Genre.Name
-        Price: @Model.Price
-    </div>
-    <div>
         <input class="btn btn-warning" value="Delete" />
         <a class="btn btn-default" asp-action="Index">Cancel</a>
     </div>
