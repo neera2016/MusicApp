@@ -83,7 +83,14 @@ namespace MusicApp.Controllers
         [HttpPost]
         public IActionResult Delete(Album album)
         {
-            return View();
+            if (ModelState.IsValid)
+            {
+                _context.Albums.Update(album);
+                _context.SaveChanges();
+                return RedirectToAction("Index");
+            }
+            return View(album);
+            //return View();
         }
     }
 }

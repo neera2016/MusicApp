@@ -6,9 +6,10 @@
 <a class="btn btn-success" asp-action="Create">Add an Album</a><br />
 <form class="form-inline" action="Albums" method="get">
     <div class="form-group">
-        <input name="searchterm" type="search" />
+        <input type="text" name="SearchString" />
     </div>
-    <button class="btn btn-info btn-sm" type="submit">Search</button>
+    <button class="btn btn-info btn-sm" type="submit" value="Filter">Search</button>
+    <button class="btn btn-info btn-sm" type="submit" value="Filter">View All</button>
 </form>
 <table class="table">
     <thead>
@@ -17,6 +18,7 @@
             <th>Artist</th>
             <th>Genre</th>
             <th>Price</th>
+            <th>Like</th>
         </tr>
     </thead>
     @foreach (var album in Model)
@@ -26,7 +28,9 @@
             <td>@album.Artist.Name</td>
             <td>@album.Genre.Name</td>
             <td>@album.Price</td>
+            <td></td>
             <td>
+                <a class="btn btn-default" @*asp-action="Details" asp-route-id="@album.AlbumID"*@>Like</a>
                 <a class="btn btn-default" asp-action="Details" asp-route-id="@album.AlbumID">Details</a>
                 <a class="btn btn-default" asp-action="Edit" asp-route-id="@album.AlbumID">Edit</a>
                 <a class="btn btn-default" asp-action="Delete">Delete</a>
