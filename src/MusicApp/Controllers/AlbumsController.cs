@@ -76,21 +76,17 @@ namespace MusicApp.Controllers
 
         public IActionResult Delete(int id)
         {
-            var album = _context.Albums.SingleOrDefault(a => a.AlbumID == id);
+            var album = _context.Albums.Include(a => a.Artist).SingleOrDefault(a => a.AlbumID == id);
             return View(album);
         }
 
         [HttpPost]
-        public IActionResult Delete(Album album)
+        public IActionResult Remove(int AlbumID)
         {
-            //if (ModelState.IsValid)
-            //{
-            //    _context.Albums.Update(album);
-            //    _context.SaveChanges();
-            //    return RedirectToAction("Index");
-            //}
-            //return View(album);
-            return View();
+            var album = _context.Albums.SingleOrDefault(a => a.AlbumID == AlbumID);
+            _context.Albums.Remove(album);
+            _context.SaveChanges();
+            return RedirectToAction("Index");
         }
     }
 }

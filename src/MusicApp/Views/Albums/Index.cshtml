@@ -33,7 +33,7 @@
                 <a class="btn btn-default" @*asp-action="Details" asp-route-id="@album.AlbumID"*@>Like</a>
                 <a class="btn btn-default" asp-action="Details" asp-route-id="@album.AlbumID">Details</a>
                 <a class="btn btn-default" asp-action="Edit" asp-route-id="@album.AlbumID">Edit</a>
-                <a class="btn btn-default" asp-action="Delete">Delete</a>
+                <a class="btn btn-default" asp-action="Delete" asp-route-id="@album.AlbumID">Delete</a>
             </td>
         </tr>
     }

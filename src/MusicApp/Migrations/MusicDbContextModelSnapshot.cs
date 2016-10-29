@@ -27,7 +27,8 @@ namespace MusicApp.Migrations
 
                     b.Property<decimal>("Price");
 
-                    b.Property<string>("Title");
+                    b.Property<string>("Title")
+                        .IsRequired();
 
                     b.HasKey("AlbumID");
 

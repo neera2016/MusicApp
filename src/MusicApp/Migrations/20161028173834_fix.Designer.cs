@@ -8,8 +8,8 @@ using MusicApp.Models;
 namespace MusicApp.Migrations
 {
     [DbContext(typeof(MusicDbContext))]
-    [Migration("20161024173336_RequiredNames")]
-    partial class RequiredNames
+    [Migration("20161028173834_fix")]
+    partial class fix
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -28,7 +28,8 @@ namespace MusicApp.Migrations
 
                     b.Property<decimal>("Price");
 
-                    b.Property<string>("Title");
+                    b.Property<string>("Title")
+                        .IsRequired();
 
                     b.HasKey("AlbumID");
 
