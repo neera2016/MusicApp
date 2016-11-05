@@ -8,7 +8,9 @@
 <form asp-action="Create" method="post">
     <div class="form-group">
         <div>
-            Title: <input asp-for="Title" /><br />
+            Title: <input asp-for="Title" />
+            <br />
+            <span asp-validation-for="Title" class="text-danger"></span>
         </div>
         <div>
             Artist: <select asp-for="ArtistID" asp-items="ViewBag.Artist"></select><br />
@@ -18,6 +20,8 @@
         </div>
         <div>
             Price: <input asp-for="Price" />
+            <br />
+            <span asp-validation-for="Price" class="text-danger"></span>
         </div>
         <br />
         <input type="submit" value="Submit" />

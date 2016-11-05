@@ -10,6 +10,7 @@ namespace MusicApp.Models
         public string Title { get; set; }
 
         [Required(ErrorMessage = "Price is required.")]
+        [Range(.01, 20.00, ErrorMessage = "Price is too high")]
         public decimal Price { get; set; }
 
         //Foreign key

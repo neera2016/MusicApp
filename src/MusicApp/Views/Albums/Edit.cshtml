@@ -11,9 +11,12 @@
     <div class="form-group">
         <input type="hidden" asp-for="AlbumID" />
         Title: <input asp-for="Title" value="@Model.Title" /><br />
+        <span asp-validation-for="Title" class="text-danger"></span><br />
+        <br />
         Artist: <select asp-for="ArtistID" asp-items="ViewBag.Artist"></select><br />
         Genre: <select asp-for="GenreID" asp-items="ViewBag.Genre"></select><br />
-        Price: <input asp-for="Price" value="@Model.Price" />
+        Price: <input asp-for="Price" value="@Model.Price" /><br />
+        <span asp-validation-for="Price" class="text-danger"></span>
         <br />
         <br />
         <input type="submit" value="Submit" />

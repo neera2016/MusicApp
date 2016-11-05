@@ -4,6 +4,7 @@ using MusicApp.Models;
 using Microsoft.EntityFrameworkCore;
 using System.Linq;
 using Microsoft.AspNetCore.Mvc.Rendering;
+using System;
 
 // For more information on enabling MVC for empty projects, visit http://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -18,9 +19,55 @@ namespace MusicApp.Controllers
             _context = context;
         }
         // GET: /<controller>/
-        public IActionResult Index()
+        public IActionResult Index(string SearchString, string sortOrder)
         {
-            return View(_context.Albums.Include(a => a.Artist).Include(g => g.Genre).ToList());
+            var albums = _context.Albums.Include(a => a.Artist).Include(g => g.Genre).ToList();
+            if (!string.IsNullOrEmpty(SearchString))
+            {
+                albums = _context.Albums.Where(a => a.Title.Contains(SearchString) || a.Artist.Name.Contains(SearchString) || a.Genre.Name.Contains(SearchString)).ToList();
+            }
+            ViewData["TitleSortParm"] = string.IsNullOrEmpty(sortOrder) ? "name_desc" : "";
+            ViewData["ArtistSortParm"] = string.IsNullOrEmpty(sortOrder) ? "name_desc" : "";
+            ViewData["GenreSortParm"] = string.IsNullOrEmpty(sortOrder) ? "name_desc" : "";
+            ViewData["PriceSortParm"] = string.IsNullOrEmpty(sortOrder) ? "name_desc" : "";
+            ViewData["LikeSortParm"] = string.IsNullOrEmpty(sortOrder) ? "name_desc" : "";
+            var album = from a in _context.Albums
+                           select a;
+            switch (sortOrder)
+            {
+                case "name_desc":
+                    album = album.OrderByDescending(a => a.Title );
+                    break;
+                case "name_asc":
+                    album = album.OrderByDescending(a => a.Title);
+                    break;
+                case "name_desc":
+                    album = album.OrderByDescending(a => a.Artist);
+                    break;
+                case "name_asc":
+                    album = album.OrderByDescending(a => a.Artist);
+                    break;
+                case "name_desc":
+                    album = album.OrderByDescending(a => a.Genre);
+                    break;
+                case "name_asc":
+                    album = album.OrderByDescending(a => a.Genre);
+                    break;
+                case "name_desc":
+                    album = album.OrderByDescending(a => a.Price);
+                    break;
+                case "name_asc":
+                    album = album.OrderByDescending(a => a.Price);
+                    break;
+                //case "name_desc":
+                //    album = album.OrderByDescending(a => a.Like);
+                //    break;
+                //case "name_asc":
+                //    album = album.OrderByDescending(a => a.Like);
+                //    break;
+            }
+
+            return View(albums);
         }
 
         public IActionResult Create()
@@ -33,6 +80,8 @@ namespace MusicApp.Controllers
         [HttpPost]
         public IActionResult Create(Album album)
         {
+            ViewBag.Artist = new SelectList(_context.Artists.ToList(), "ArtistID", "Name");
+            ViewBag.Genre = new SelectList(_context.Genres.ToList(), "GenreID", "Name");
             if (ModelState.IsValid)
             {
                 _context.Albums.Add(album);

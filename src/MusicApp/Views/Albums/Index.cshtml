@@ -4,7 +4,7 @@
 }
 <h2>Album List</h2>
 <a class="btn btn-success" asp-action="Create">Add an Album</a><br />
-<form class="form-inline" action="Albums" method="get">
+<form class="form-inline" method="get">
     <div class="form-group">
         <input type="text" name="SearchString" />
     </div>
@@ -14,11 +14,11 @@
 <table class="table">
     <thead>
         <tr>
-            <th>Title</th>
+            <th><a asp-action="Index" asp-route-sortOrder="@ViewBag.TitleSortParm">Title</a></th>
             <th><a asp-action="Index" asp-route-sortOrder="@ViewBag.ArtistSortParm">Artist</a></th>
-            <th>Genre</th>
-            <th>Price</th>
-            <th>Like</th>
+            <th><a asp-action="Index" asp-route-sortOrder="@ViewBag.GenreSortParm">Genre</a></th>
+            <th><a asp-action="Index" asp-route-sortOrder="@ViewBag.PriceSortParm">Price</a></th>
+            <th><a asp-action="Index" asp-route-sortOrder="@ViewBag.LikeSortParm">Like</a></th>
         </tr>
     </thead>
     @foreach (var album in Model)
@@ -30,7 +30,7 @@
             <td>@album.Price</td>
             <td></td>
             <td>
-                <a class="btn btn-default" @*asp-action="Details" asp-route-id="@album.AlbumID"*@>Like</a>
+                <a class="btn btn-default" onclick="like()">Like</a>
                 <a class="btn btn-default" asp-action="Details" asp-route-id="@album.AlbumID">Details</a>
                 <a class="btn btn-default" asp-action="Edit" asp-route-id="@album.AlbumID">Edit</a>
                 <a class="btn btn-default" asp-action="Delete" asp-route-id="@album.AlbumID">Delete</a>

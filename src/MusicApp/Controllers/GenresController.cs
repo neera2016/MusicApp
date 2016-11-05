@@ -34,6 +34,10 @@ namespace MusicApp.Controllers
         [HttpPost]
         public IActionResult Create(Genre genre)
         {
+            if (_context.Genres.Any(a => a.Name == genre.Name))
+            {
+                ModelState.AddModelError("Name", "This Genre already exists.");
+            }
             if (ModelState.IsValid)
             {
                 _context.Genres.Add(genre);

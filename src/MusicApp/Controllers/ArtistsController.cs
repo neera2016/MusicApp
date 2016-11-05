@@ -33,6 +33,10 @@ namespace MusicApp.Controllers
         [HttpPost]
         public IActionResult Create(Artist artist)
         {
+            if (_context.Artists.Any(a => a.Name == artist.Name))
+            {
+                ModelState.AddModelError("Name", "This Artist already exists.");
+            }
             if (ModelState.IsValid)
             {
                 _context.Artists.Add(artist);
@@ -63,7 +67,10 @@ namespace MusicApp.Controllers
         public IActionResult Details(int id)
         {
             var artist = _context.Artists.SingleOrDefault(a => a.ArtistID == id);
+            //var albums = _context.Albums.Where(a => a.GenreID == id);
+            //ViewBag.Albums = albums.ToList();
             return View(artist);
+            //return View(_context.Genres.SingleOrDefault(g => g.GenreID == id));
         }
 
         [HttpPost]
