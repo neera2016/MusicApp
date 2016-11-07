@@ -21,5 +21,7 @@ namespace MusicApp.Models
 
         public int GenreID { get; set; }
         public Genre Genre { get; set; }
+
+        public int Like { get; set; }
     }
 }

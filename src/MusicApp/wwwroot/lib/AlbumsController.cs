@@ -21,50 +21,51 @@ namespace MusicApp.Controllers
         // GET: /<controller>/
         public IActionResult Index(string SearchString, string sortOrder)
         {
-            var albums = _context.Albums.Include(a => a.Artist).Include(g => g.Genre).ToList();
+            var albums = _context.Albums.Include(a => a.Artist).Include(a => a.Genre).ToList();
             if (!string.IsNullOrEmpty(SearchString))
             {
-                albums = _context.Albums.Where(a => a.Title.Contains(SearchString) || a.Artist.Name.Contains(SearchString) || a.Genre.Name.Contains(SearchString)).ToList();
+                albums = _context.Albums.Where(a => a.Title.Contains(SearchString)
+                                                || a.Artist.Name.Contains(SearchString)
+                                                || a.Genre.Name.Contains(SearchString)).ToList();
             }
-            ViewData["TitleSortParm"] = string.IsNullOrEmpty(sortOrder) ? "name_desc" : "";
-            ViewData["ArtistSortParm"] = string.IsNullOrEmpty(sortOrder) ? "name_desc" : "";
-            ViewData["GenreSortParm"] = string.IsNullOrEmpty(sortOrder) ? "name_desc" : "";
-            ViewData["PriceSortParm"] = string.IsNullOrEmpty(sortOrder) ? "name_desc" : "";
-            ViewData["LikeSortParm"] = string.IsNullOrEmpty(sortOrder) ? "name_desc" : "";
-            var album = from a in _context.Albums
-                           select a;
+            ViewBag.TitleSortParm = sortOrder == "Title" ? "title_desc" : "Title";
+            ViewBag.ArtistSortParm = sortOrder == "Artist" ? "artist_desc" : "Artist";
+            ViewBag.GenreSortParm = sortOrder == "Genre" ? "genre_desc" : "Genre";
+            ViewBag.PriceSortParm = sortOrder == "Price" ? "price_desc" : "Price";
+            ViewBag.LikeSortParm = sortOrder == "Like" ? "like_desc" : "Like";
+
             switch (sortOrder)
             {
-                case "name_desc":
-                    album = album.OrderByDescending(a => a.Title );
+                case "title_desc":
+                    albums = albums.OrderByDescending(a => a.Title ).ToList();
                     break;
-                case "name_asc":
-                    album = album.OrderByDescending(a => a.Title);
+                case "Title":
+                    albums = albums.OrderBy(a => a.Title).ToList();
                     break;
-                case "name_desc":
-                    album = album.OrderByDescending(a => a.Artist);
+                case "artist_desc":
+                    albums = albums.OrderByDescending(a => a.Artist.Name).ToList();
                     break;
-                case "name_asc":
-                    album = album.OrderByDescending(a => a.Artist);
+                case "Artist":
+                    albums = albums.OrderBy(a => a.Artist.Name).ToList();
                     break;
-                case "name_desc":
-                    album = album.OrderByDescending(a => a.Genre);
+                case "genre_desc":
+                    albums = albums.OrderByDescending(a => a.Genre.Name).ToList();
                     break;
-                case "name_asc":
-                    album = album.OrderByDescending(a => a.Genre);
+                case "Genre":
+                    albums = albums.OrderBy(a => a.Genre.Name).ToList();
                     break;
-                case "name_desc":
-                    album = album.OrderByDescending(a => a.Price);
+                case "price_desc":
+                    albums = albums.OrderByDescending(a => a.Price).ToList();
                     break;
-                case "name_asc":
-                    album = album.OrderByDescending(a => a.Price);
+                case "Price":
+                    albums = albums.OrderBy(a => a.Price).ToList();
                     break;
-                //case "name_desc":
-                //    album = album.OrderByDescending(a => a.Like);
-                //    break;
-                //case "name_asc":
-                //    album = album.OrderByDescending(a => a.Like);
-                //    break;
+                case "like_desc":
+                    albums = albums.OrderByDescending(a => a.Like).ToList();
+                    break;
+                case "Like":
+                    albums = albums.OrderBy(a => a.Like).ToList();
+                    break;
             }
 
             return View(albums);
@@ -134,6 +135,22 @@ namespace MusicApp.Controllers
         {
             var album = _context.Albums.SingleOrDefault(a => a.AlbumID == AlbumID);
             _context.Albums.Remove(album);
+            _context.SaveChanges();
+            return RedirectToAction("Index");
+        }
+
+        public IActionResult Likes(int? AlbumID)
+        {
+            var album = _context.Albums.Include(a => a.Artist).Include(g => g.Genre).SingleOrDefault(a => a.AlbumID == AlbumID);
+            if (AlbumID == null)
+            {
+                return NotFound();
+            }
+            if (album == null)
+            {
+                return NotFound();
+            }
+            album.Like++;
             _context.SaveChanges();
             return RedirectToAction("Index");
         }
