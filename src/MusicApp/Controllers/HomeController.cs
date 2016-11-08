@@ -15,7 +15,7 @@ namespace MusicApp.Controllers
 
         public IActionResult About()
         {
-            ViewData["Message"] = "Your application description page.";
+            ViewData["Message"] = "This application is used to keep track of music albums and their properties on a database.";
 
             return View();
         }
@@ -24,6 +24,16 @@ namespace MusicApp.Controllers
         {
             ViewData["Message"] = "Your contact page.";
 
+            return View();
+        }
+
+        public IActionResult Register()
+        {
+            return View();
+        }
+
+        public IActionResult Login()
+        {
             return View();
         }
 
