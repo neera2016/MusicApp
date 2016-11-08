@@ -8,19 +8,19 @@
 <form asp-action="Create" method="post">
     <div class="form-group">
         <div>
-            Title: <input asp-for="Title" />
-            <br />
-            <span asp-validation-for="Title" class="text-danger"></span>
+            Title: <input asp-for="Title" /><br />
+            <span asp-validation-for="Title" class="text-danger"></span><br />
         </div>
         <div>
-            Artist: <select asp-for="ArtistID" asp-items="ViewBag.Artist"></select><br />
+            Artist: <select asp-for="ArtistID" asp-items="ViewBag.Artist"></select> or new artist: <input asp-for="@Model.Artist.Name" value="" /><br />
+            <span asp-validation-for="@Model.Artist.Name" class="text-danger"></span><br />
         </div>
         <div>
-            Genre: <select asp-for="GenreID" asp-items="ViewBag.Genre"></select><br />
+            Genre: <select asp-for="GenreID" asp-items="ViewBag.Genre"></select> or new genre: <input asp-for="@Model.Genre.Name" value="" /><br />
+            <span asp-validation-for="@Model.Genre.Name" class="text-danger"></span><br /><br />
         </div>
         <div>
-            Price: <input asp-for="Price" />
-            <br />
+            Price: <input asp-for="Price" /><br />
             <span asp-validation-for="Price" class="text-danger"></span>
         </div>
         <br />
