@@ -135,6 +135,9 @@ namespace MusicApp.Controllers
         [HttpPost]
         public IActionResult Edit(Album album)
         {
+            ViewBag.Artist = new SelectList(_context.Artists.ToList(), "ArtistID", "Name");
+            ViewBag.Genre = new SelectList(_context.Genres.ToList(), "GenreID", "Name");
+
             if (ModelState.IsValid)
             {
                 _context.Albums.Update(album);
