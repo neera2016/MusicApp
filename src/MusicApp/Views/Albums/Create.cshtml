@@ -12,12 +12,16 @@
             <span asp-validation-for="Title" class="text-danger"></span><br />
         </div>
         <div>
-            Artist: <select asp-for="ArtistID" asp-items="ViewBag.Artist"></select> or new artist: <input asp-for="@Model.Artist.Name" value="" /><br />
-            <span asp-validation-for="@Model.Artist.Name" class="text-danger"></span><br />
+            Artist: <select asp-for="ArtistID" asp-items="ViewBag.Artist">
+                <option selected>Select Artist</option>
+            </select> or new artist: <input type="text" name="ArtistString" /><br />
+            <span asp-validation-for="ArtistID" class="text-danger"></span><br />
         </div>
         <div>
-            Genre: <select asp-for="GenreID" asp-items="ViewBag.Genre"></select> or new genre: <input asp-for="@Model.Genre.Name" value="" /><br />
-            <span asp-validation-for="@Model.Genre.Name" class="text-danger"></span><br /><br />
+            Genre: <select asp-for="GenreID" asp-items="ViewBag.Genre">
+                <option selected>Select Genre</option>
+            </select> or new genre: <input type="text" name="GenreString" /><br />
+            <span asp-validation-for="GenreID" class="text-danger"></span><br />
         </div>
         <div>
             Price: <input asp-for="Price" /><br />

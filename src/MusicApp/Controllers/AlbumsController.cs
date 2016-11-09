@@ -21,6 +21,7 @@ namespace MusicApp.Controllers
         // GET: /<controller>/
         public IActionResult Index(string SearchString, string sortOrder)
         {
+            ViewBag.SearchString = SearchString;
             var albums = _context.Albums.Include(a => a.Artist).Include(a => a.Genre).ToList();
             if (!string.IsNullOrEmpty(SearchString))
             {
@@ -79,10 +80,41 @@ namespace MusicApp.Controllers
         }
 
         [HttpPost]
-        public IActionResult Create(Album album)
+        public IActionResult Create(Album album, string ArtistString, string GenreString)
         {
+            ModelState.Remove("ArtistID");
+            ModelState.Remove("GenreID");
             ViewBag.Artist = new SelectList(_context.Artists.ToList(), "ArtistID", "Name");
             ViewBag.Genre = new SelectList(_context.Genres.ToList(), "GenreID", "Name");
+
+            if (string.IsNullOrEmpty(ArtistString) && album.ArtistID == 0)
+            {
+                ModelState.AddModelError("ArtistID", "Artist is required.");
+            }
+            if (!string.IsNullOrEmpty(ArtistString) && _context.Artists.Any(a => a.Name == ArtistString))
+            {
+                Artist newArtist = new Artist { Name = ArtistString };
+                _context.Artists.Add(newArtist);
+                _context.SaveChanges();
+                album.ArtistID = newArtist.ArtistID;
+                album.Artist = newArtist;
+            }
+            
+
+            if (string.IsNullOrEmpty(GenreString) && album.GenreID == 0)
+            {
+                ModelState.AddModelError("GenreID", "Genre is required.");
+            }
+            if (!string.IsNullOrEmpty(GenreString) && _context.Genres.Any(a => a.Name == GenreString))
+            {
+                Genre newGenre = new Genre { Name = GenreString };
+                _context.Genres.Add(newGenre);
+                _context.SaveChanges();
+                album.GenreID = newGenre.GenreID;
+                album.Genre = newGenre;
+            }
+           
+
             if (ModelState.IsValid)
             {
                 _context.Albums.Add(album);
@@ -139,10 +171,10 @@ namespace MusicApp.Controllers
             return RedirectToAction("Index");
         }
 
-        public IActionResult Likes(int? AlbumID)
+        public IActionResult Likes(int? id)
         {
-            var album = _context.Albums.Include(a => a.Artist).Include(g => g.Genre).SingleOrDefault(a => a.AlbumID == AlbumID);
-            if (AlbumID == null)
+            var album = _context.Albums.Include(a => a.Artist).Include(g => g.Genre).SingleOrDefault(a => a.AlbumID == id);
+            if (id == null)
             {
                 return NotFound();
             }

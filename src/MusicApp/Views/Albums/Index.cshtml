@@ -14,11 +14,11 @@
 <table class="table">
     <thead>
         <tr>
-            <th><a asp-action="Index" asp-route-searchString="@ViewBag.SearchString" asp-route-sortOrder="@ViewBag.TitleSortParm">Title</a></th>
-            <th><a asp-action="Index" asp-route-searchString="@ViewBag.SearchString" asp-route-sortOrder="@ViewBag.ArtistSortParm">Artist</a></th>
-            <th><a asp-action="Index" asp-route-searchString="@ViewBag.SearchString" asp-route-sortOrder="@ViewBag.GenreSortParm">Genre</a></th>
-            <th><a asp-action="Index" asp-route-searchString="@ViewBag.SearchString" asp-route-sortOrder="@ViewBag.PriceSortParm">Price</a></th>
-            <th><a asp-action="Index" asp-route-searchString="@ViewBag.SearchString" asp-route-sortOrder="@ViewBag.LikeSortParm">Like</a></th>
+            <th><a asp-action="Index" asp-route-SearchString="@ViewBag.SearchString" asp-route-sortOrder="@ViewBag.TitleSortParm">Title</a></th>
+            <th><a asp-action="Index" asp-route-SearchString="@ViewBag.SearchString" asp-route-sortOrder="@ViewBag.ArtistSortParm">Artist</a></th>
+            <th><a asp-action="Index" asp-route-SearchString="@ViewBag.SearchString" asp-route-sortOrder="@ViewBag.GenreSortParm">Genre</a></th>
+            <th><a asp-action="Index" asp-route-SearchString="@ViewBag.SearchString" asp-route-sortOrder="@ViewBag.PriceSortParm">Price</a></th>
+            <th><a asp-action="Index" asp-route-SearchString="@ViewBag.SearchString" asp-route-sortOrder="@ViewBag.LikeSortParm">Like</a></th>
         </tr>
     </thead>
     @foreach (var album in Model)
