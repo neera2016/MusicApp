@@ -37,6 +37,12 @@ namespace MusicApp.Controllers
             return View();
         }
 
+        [HttpPost]
+        public IActionResult Login()
+        {
+            return View();
+        }
+
         public IActionResult Error()
         {
             return View();

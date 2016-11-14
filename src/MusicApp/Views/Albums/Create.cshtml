@@ -11,13 +11,13 @@
             <span asp-validation-for="Title" class="text-danger"></span><br />
         </div>
         <div>
-            Artist: <select asp-for="ArtistID" asp-items="ViewBag.Artist">
+            Artist: <select asp-for="ArtistID" asp-items="ViewBag.Artist" class="col-md-10">
                 <option selected>Select Artist</option>
             </select> or new artist: <input type="text" name="ArtistString" /><br />
             <span asp-validation-for="ArtistID" class="text-danger"></span><br />
         </div>
         <div>
-            Genre: <select asp-for="GenreID" asp-items="ViewBag.Genre">
+            Genre: <select asp-for="GenreID" asp-items="ViewBag.Genre" class="col-md-10">
                 <option selected>Select Genre</option>
             </select> or new genre: <input type="text" name="GenreString" /><br />
             <span asp-validation-for="GenreID" class="text-danger"></span><br />
