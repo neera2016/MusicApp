@@ -7,7 +7,8 @@
 <br />
 <form asp-action="Create" method="post">
     <div class="form-group">
-        <label for="Name">Genre: </label><input asp-for="Name" type="text" />
+        <label class="col-md-1">Genre:</label><input asp-for="Name" type="text" /><br />
+        <br />
         <button type="submit">Submit</button><br />
         <span asp-validation-for="Name" class="text-danger"></span>
     </div>

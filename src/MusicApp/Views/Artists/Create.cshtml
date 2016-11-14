@@ -7,9 +7,9 @@
 <br />
 <form asp-action="Create" method="post">
     <div class="form-group">
-        Artist: <input asp-for="Name" value="" /><br />
+        <label class="col-md-1">Artist:</label><input asp-for="Name" value="" /><br />
         <span asp-validation-for="Name" class="text-danger"></span><br />
-        Bio: <input asp-for="Bio" value="" /><br />
+        <label class="col-md-1">Bio:</label><input class="text-" asp-for="Bio" value="" /><br />
         <br />
         <input type="submit" value="Create Artist" />
     </div>

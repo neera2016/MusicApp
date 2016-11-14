@@ -7,23 +7,23 @@
 <form asp-action="Create" method="post">
     <div class="form-group">
         <div>
-            Title: <input asp-for="Title" /><br />
+            <label class="col-md-1">Title:</label><input asp-for="Title" /><br />
             <span asp-validation-for="Title" class="text-danger"></span><br />
         </div>
         <div>
-            Artist: <select asp-for="ArtistID" asp-items="ViewBag.Artist" class="col-md-10">
+            <label class="col-md-1">Artist:</label><select asp-for="ArtistID" asp-items="ViewBag.Artist" class="col-md-10">
                 <option selected>Select Artist</option>
             </select> or new artist: <input type="text" name="ArtistString" /><br />
             <span asp-validation-for="ArtistID" class="text-danger"></span><br />
         </div>
         <div>
-            Genre: <select asp-for="GenreID" asp-items="ViewBag.Genre" class="col-md-10">
+            <label class="col-md-1">Genre:</label><select asp-for="GenreID" asp-items="ViewBag.Genre" class="col-md-10">
                 <option selected>Select Genre</option>
             </select> or new genre: <input type="text" name="GenreString" /><br />
             <span asp-validation-for="GenreID" class="text-danger"></span><br />
         </div>
         <div>
-            Price: <input asp-for="Price" /><br />
+            <label class="col-md-1">Price:</label><input asp-for="Price" /><br />
             <span asp-validation-for="Price" class="text-danger"></span>
         </div>
         <br />
