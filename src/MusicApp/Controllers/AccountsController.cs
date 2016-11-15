@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using MusicApp.Models;
+using Microsoft.EntityFrameworkCore.Metadata.Internal;
 
 // For more information on enabling MVC for empty projects, visit http://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -26,7 +27,7 @@ namespace MusicApp.Controllers
         [HttpPost]
         public IActionResult Register(string Username, string Password)
         {
-            return View();
+            return RedirectToAction("Index", "Home");
         }
 
         public IActionResult Login()
@@ -37,7 +38,7 @@ namespace MusicApp.Controllers
         [HttpPost]
         public IActionResult Login(string Username, string Password)
         {
-            return View();
+            return RedirectToAction("Index", "Home");
         }
 
     }
