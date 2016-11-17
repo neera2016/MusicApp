@@ -9,6 +9,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using MusicApp.Models;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 
 namespace MusicApp
 {
@@ -35,16 +36,34 @@ namespace MusicApp
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddIdentity<ApplicationUser, IdentityRole>()
+            .AddEntityFrameworkStores<MusicDbContext>()
+            .AddDefaultTokenProviders();
+
             // Add framework services.
             services.AddApplicationInsightsTelemetry(Configuration);
 
             services.AddDbContext<MusicDbContext>(options => 
               options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
             services.AddMvc();
-        }
+            services.Configure<IdentityOptions>(options =>
+            {
+                // Password settings
+                options.Password.RequireDigit = true;
+                options.Password.RequireNonAlphanumeric = false;
+                
+               // Cookie settings
+                options.Cookies.ApplicationCookie.ExpireTimeSpan = TimeSpan.FromDays(150);
+                options.Cookies.ApplicationCookie.LoginPath = "/Account/LogIn";
+                options.Cookies.ApplicationCookie.LogoutPath = "/Account/LogOff";
 
-        // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory loggerFactory)
+                // User settings
+                options.User.RequireUniqueEmail = true;
+            });
+    }
+
+    // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
+    public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory loggerFactory)
         {
             loggerFactory.AddConsole(Configuration.GetSection("Logging"));
             loggerFactory.AddDebug();
@@ -64,7 +83,7 @@ namespace MusicApp
             app.UseApplicationInsightsExceptionTelemetry();
 
             app.UseStaticFiles();
-
+            app.UseIdentity();
             app.UseMvc(routes =>
             {
                 routes.MapRoute(

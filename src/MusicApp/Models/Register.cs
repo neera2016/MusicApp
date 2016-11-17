@@ -14,9 +14,11 @@ namespace MusicApp.Models
         public string Username { get; set; }
 
         [Required(ErrorMessage = "The Password is required.")]
+        [DataType(DataType.Password)]
         public string Password { get; set; }
 
-        [Required(ErrorMessage = "The Confirm Password is required.")]
+        [Compare("Password", ErrorMessage = "Password is not the same.")]
+        [DataType(DataType.Password)]
         public string ConfirmPassword { get; set; }
     }
 }
