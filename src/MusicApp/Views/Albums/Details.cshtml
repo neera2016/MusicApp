@@ -14,6 +14,13 @@
     <br />
     <br />
 </div>
+<h3>You might also like these albums:</h3>
+@foreach (var album in ViewBag.Suggestions)
+{
+    <tr>
+        <td>@album.Title</td>
+    </tr>
+}
 <div>
     <a class="btn btn-info" asp-action="Edit" asp-route-id="@Model.AlbumID">Edit</a>
     <a class="btn btn-default" asp-action="Index">Back to List</a>

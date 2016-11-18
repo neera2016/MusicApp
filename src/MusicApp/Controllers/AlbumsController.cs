@@ -150,13 +150,9 @@ namespace MusicApp.Controllers
         public IActionResult Details(int id)
         {
             var album = _context.Albums.Include(a => a.Artist).Include(g => g.Genre).SingleOrDefault(a => a.AlbumID == id);
+            ViewBag.Suggestions = _context.Albums.Where(a => (a.Artist == album.Artist ||
+                                                    a.Genre == album.Genre)).ToList();
             return View(album);
-        }
-
-        [HttpPost]
-        public IActionResult Details(Album album)
-        {
-            return View();
         }
 
         public IActionResult Delete(int id)
