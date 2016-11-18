@@ -1,5 +1,10 @@
-﻿@*
-    For more information on enabling MVC for empty projects, visit http://go.microsoft.com/fwlink/?LinkID=397860
-*@
-@{
+﻿@using Microsoft.AspNetCore.Identity
+@using MusicApp.Models
+
+@model IEnumerable<MusicApp.Models.Playlist>
+@{ 
+    ViewData["Title"] = "Playlists";
 }
+
+<h2>Playlists for: @ViewBag.User.UserName (member since @ViewBag.User.DateJoined)</h2>
+<a class="btn btn-success" asp-action="Add">Add an Album</a><br />
