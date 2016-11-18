@@ -39,10 +39,7 @@
                     <li><a asp-area="" asp-controller="Home" asp-action="About">About</a></li>
                     <li><a asp-area="" asp-controller="Home" asp-action="Contact">Contact</a></li>
                 </ul>
-                <ul class="nav navbar-nav navbar-right">
-                    <li><a asp-area="" asp-controller="Accounts" asp-action="Register">Register</a></li>
-                    <li><a asp-area="" asp-controller="Accounts" asp-action="Login">Login</a></li>
-                </ul>
+                @await Html.PartialAsync("_LoginPartial")    
             </div>
         </div>
     </div>
@@ -77,4 +74,6 @@
 
     @RenderSection("scripts", required: false)
 </body>
+
+
 </html>

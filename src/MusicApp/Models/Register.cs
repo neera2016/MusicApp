@@ -7,9 +7,7 @@ using System.Threading.Tasks;
 namespace MusicApp.Models
 {
     public class Register
-    {
-        public int UserID { get; set; }
-
+    { 
         [Required(ErrorMessage = "The Email is required.")]
         public string Username { get; set; }
 

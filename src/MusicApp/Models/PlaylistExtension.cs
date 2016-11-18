@@ -5,12 +5,12 @@ using System.Threading.Tasks;
 
 namespace MusicApp.Models
 {
-    public class Playlist
+    public class PlaylistExtension
     {
         public int playlistID { get; set; }
-        public string name { get; set; }
+        public int albumID { get; set; }
 
-        public ApplicationUser user { get; set; }
-        public List<PlaylistExtension> list { get; set; }
+        public Playlist playlist { get; set; }
+        public Album album { get; set; }
     }
 }

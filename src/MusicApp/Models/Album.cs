@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 
 namespace MusicApp.Models
 {
@@ -23,5 +24,7 @@ namespace MusicApp.Models
         public Genre Genre { get; set; }
 
         public int Like { get; set; }
+
+        public List<PlaylistExtension> list { get; set; }
     }
 }
