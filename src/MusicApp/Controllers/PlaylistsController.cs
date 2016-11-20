@@ -28,11 +28,28 @@ namespace MusicApp.Controllers
         public IActionResult Index()
         {
             ViewBag.User = _userManager.Users.SingleOrDefault(u => u.UserName == User.Identity.Name);
-            var playlists = _context.Playlists.Include(p => p.PlaylistID).ToList();
-            return View(playlists);
+            //var playlists = _context.Albums.Include(a => a.Title).ToList();
+            return View();
+            //return View(playlists);
+        }
+
+        public IActionResult Create()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public IActionResult Create(Playlist playlist)
+        {
+            return View();
         }
 
         public IActionResult Add()
+        {
+            return View();
+        }
+
+        public IActionResult Details()
         {
             return View();
         }
@@ -42,7 +59,7 @@ namespace MusicApp.Controllers
             return View();
         }
 
-        public IActionResult Remove()
+        public IActionResult Delete()
         {
             return View();
         }

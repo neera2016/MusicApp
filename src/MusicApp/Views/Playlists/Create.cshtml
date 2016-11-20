@@ -1,5 +1,13 @@
-﻿@*
-    For more information on enabling MVC for empty projects, visit http://go.microsoft.com/fwlink/?LinkID=397860
-*@
+﻿@model MusicApp.Models.Playlist
+
 @{
+    ViewBag.Title = "Create";
 }
+<h3>Create a playlist</h3>
+<hr />
+<form asp-action="Create" method="post">
+    <div class="form-group">
+        <label class="col-md-1"><strong>Name</strong></label><input asp-for="Name" type="text"/> <button type="submit">Submit</button> <a href="Index">Cancel</a><br />
+        <span asp-validation-for="Name" class="text-danger col-md-offset-1"></span><br />   
+    </div>
+</form>
