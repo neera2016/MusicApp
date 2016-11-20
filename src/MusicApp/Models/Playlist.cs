@@ -7,8 +7,8 @@ namespace MusicApp.Models
 {
     public class Playlist
     {
-        public int playlistID { get; set; }
-        public string name { get; set; }
+        public int PlaylistID { get; set; }
+        public string Name { get; set; }
 
         public ApplicationUser user { get; set; }
         public List<PlaylistExtension> list { get; set; }

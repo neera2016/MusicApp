@@ -67,10 +67,8 @@ namespace MusicApp.Controllers
         public IActionResult Details(int id)
         {
             var artist = _context.Artists.SingleOrDefault(a => a.ArtistID == id);
-            //var albums = _context.Albums.Where(a => a.GenreID == id);
-            //ViewBag.Albums = albums.ToList();
+            ViewBag.Albums = _context.Albums.Where(a => a.ArtistID == id).ToList();
             return View(artist);
-            //return View(_context.Genres.SingleOrDefault(g => g.GenreID == id));
         }
 
         [HttpPost]

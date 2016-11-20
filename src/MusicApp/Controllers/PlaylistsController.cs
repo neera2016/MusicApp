@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Authorization;
 using MusicApp.Models;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.EntityFrameworkCore;
 
 // For more information on enabling MVC for empty projects, visit http://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -27,7 +28,8 @@ namespace MusicApp.Controllers
         public IActionResult Index()
         {
             ViewBag.User = _userManager.Users.SingleOrDefault(u => u.UserName == User.Identity.Name);
-            return View();
+            var playlists = _context.Playlists.Include(p => p.PlaylistID).ToList();
+            return View(playlists);
         }
 
         public IActionResult Add()

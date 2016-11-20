@@ -10,8 +10,15 @@
         Artist:  @Model.Name<br />
         Bio:  @Model.Bio<br />
         <br />
-        <br />
     </div>
+    <table class="table"><thead><th>Albums</th></thead></table>
+    <ul>
+    @foreach (var album in ViewBag.Albums)
+        {
+            <li>@album.Title</li>
+        }
+    </ul>
+    <br />
     <div>
         <a class="btn btn-info" asp-action="Edit" asp-route-id="@Model.ArtistID">Edit</a>
         <a class="btn btn-default" asp-action="Index">Back to List</a>

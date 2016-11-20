@@ -20,7 +20,8 @@
     <ul>@album.Title</ul>
 }
 <div>
-    <a class="btn btn-info" asp-action="Edit" asp-route-id="@Model.AlbumID">Edit</a>
+    <a class="btn btn-default" asp-action="Likes" asp-route-id="@Model.AlbumID">Like</a>
     <a class="btn btn-default" asp-controller="Playlists" asp-action="Add" asp-route-id="@Model.AlbumID">Playlist+</a>
+    <a class="btn btn-info" asp-action="Edit" asp-route-id="@Model.AlbumID">Edit</a>
     <a class="btn btn-default" asp-action="Index">Back to List</a>
 </div>
