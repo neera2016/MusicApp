@@ -9,7 +9,7 @@ namespace MusicApp.Models
         [Required(ErrorMessage = "Playlist name required.")]
         public string Name { get; set; }
 
-        public ApplicationUser user { get; set; }
-        public List<PlaylistExtension> list { get; set; }
+        public ApplicationUser User { get; set; }
+        public List<PlaylistExtension> List { get; set; }
     }
 }

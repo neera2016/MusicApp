@@ -1,5 +1,17 @@
-﻿@*
-    For more information on enabling MVC for empty projects, visit http://go.microsoft.com/fwlink/?LinkID=397860
-*@
+﻿@model MusicApp.Models.Playlist
 @{
+    ViewData["Title"] = "Details";
 }
+<h3>@Model.Name</h3>
+<input type="hidden" asp-for="PlaylistID" />
+<table class="table">
+    @foreach (var album in ViewBag.Playlists)
+    {
+        <ol>@album.Title</ol>
+    }
+    <br />
+    <div>
+        <a class="btn btn-default" asp-action="@Models.Albums.Index">Add more albums</a>
+        <a class="btn btn-default" asp-action="Index">Back to Playlist</a>
+    </div>
+</table>

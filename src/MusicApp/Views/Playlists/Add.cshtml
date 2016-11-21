@@ -1,5 +1,12 @@
-﻿@*
-    For more information on enabling MVC for empty projects, visit http://go.microsoft.com/fwlink/?LinkID=397860
-*@
+﻿@model MusicApp.Models.PlaylistExtension
+
 @{
+    ViewBag.Title = "Add To Playlist";
 }
+<h3>Select Playlist for "@Model.album.Title"</h3>
+<div class="form-inline">
+    <select asp-for="PlaylistID" asp-items="ViewBag.Playlist"/>
+    <button class="btn btn-default" type="submit">Add</button>
+    <a class="btn btn-default" asp-action="Index">Cancel</a>
+</div>
+

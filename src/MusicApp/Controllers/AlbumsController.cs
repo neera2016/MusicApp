@@ -151,7 +151,8 @@ namespace MusicApp.Controllers
         {
             var album = _context.Albums.Include(a => a.Artist).Include(g => g.Genre).SingleOrDefault(a => a.AlbumID == id);
             ViewBag.Suggestions = _context.Albums.Where(a => (a.Artist == album.Artist ||
-                                                    a.Genre == album.Genre) && a.AlbumID != album.AlbumID).ToList();
+                                                              a.Genre == album.Genre)
+                                                              && a.AlbumID != album.AlbumID).ToList();
             return View(album);
         }
 

@@ -1,5 +1,15 @@
-﻿@*
-    For more information on enabling MVC for empty projects, visit http://go.microsoft.com/fwlink/?LinkID=397860
-*@
+﻿@model MusicApp.Models.Playlist
+
 @{
+    ViewData["Title"] = "Rename";
 }
+<br />
+<br />
+<form asp-action="Edit" method="post">
+    <div class="form-group">
+        <input type="hidden" asp-for="PlaylistID" />
+        <label class="col-md-1"><strong>Name</strong></label><input asp-for="Name" type="text" /><br />
+        <span asp-validation-for="Name" class="text-danger col-md-offset-1"></span><br />
+        <button type="submit">Save</button> <a href="Index">Back to List</a>
+    </div>
+</form>

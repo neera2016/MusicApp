@@ -44,12 +44,29 @@ namespace MusicApp.Controllers
             return View();
         }
 
+        
         public IActionResult Add()
         {
             return View();
         }
 
+        [HttpPost]
+        public IActionResult Add(int id)
+        {
+            var album = _context.Albums.Include(a => a.Artist).Include(g => g.Genre).SingleOrDefault(a => a.AlbumID == id);
+            ViewBag.Suggestions = _context.Albums.Where(a => (a.Artist == album.Artist ||
+                                                              a.Genre == album.Genre)
+                                                              && a.AlbumID == album.AlbumID);
+            return View(album);
+        }
+
         public IActionResult Details()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public IActionResult Details(int id)
         {
             return View();
         }
@@ -59,7 +76,19 @@ namespace MusicApp.Controllers
             return View();
         }
 
+        [HttpPost]
+        public IActionResult Edit(int id)
+        {
+            return View();
+        }
+
         public IActionResult Delete()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public IActionResult Delete(int id)
         {
             return View();
         }
