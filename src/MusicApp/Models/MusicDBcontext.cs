@@ -24,17 +24,17 @@ namespace MusicApp.Models
         {
             base.OnModelCreating(modelBuilder);
             modelBuilder.Entity<PlaylistExtension>()
-                .HasKey(a => new { a.playlistID, a.albumID });
+                .HasKey(a => new { a.PlaylistID, a.AlbumID });
 
             modelBuilder.Entity<PlaylistExtension>()
                 .HasOne(pl => pl.playlist)
-                .WithMany(l => l.list)
-                .HasForeignKey(pl => pl.playlistID);
+                .WithMany(l => l.List)
+                .HasForeignKey(pl => pl.PlaylistID);
 
             modelBuilder.Entity<PlaylistExtension>()
                 .HasOne(pl => pl.album)
                 .WithMany(l => l.list)
-                .HasForeignKey(pl => pl.albumID);
+                .HasForeignKey(pl => pl.AlbumID);
         }
     }
 }

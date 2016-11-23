@@ -1,12 +1,13 @@
-﻿@model MusicApp.Models.PlaylistExtension
+﻿@model MusicApp.Models.Album
 
 @{
     ViewBag.Title = "Add To Playlist";
 }
-<h3>Select Playlist for "@Model.album.Title"</h3>
-<div class="form-inline">
-    <select asp-for="PlaylistID" asp-items="ViewBag.Playlist"/>
+<h3>Select Playlist for "@Model.Title"</h3>
+<form>
+    <input type="hidden" asp-for="AlbumID" />
+    <select name="PlaylistID" asp-items="ViewBag.Playlist" class="col-md-3"></select>
     <button class="btn btn-default" type="submit">Add</button>
     <a class="btn btn-default" asp-action="Index">Cancel</a>
-</div>
+</form>
 

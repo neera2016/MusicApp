@@ -54,8 +54,8 @@ namespace MusicApp
                 
                // Cookie settings
                 options.Cookies.ApplicationCookie.ExpireTimeSpan = TimeSpan.FromDays(150);
-                options.Cookies.ApplicationCookie.LoginPath = "/Account/LogIn";
-                options.Cookies.ApplicationCookie.LogoutPath = "/Account/LogOff";
+                options.Cookies.ApplicationCookie.LoginPath = "/Accounts/LogIn";
+                options.Cookies.ApplicationCookie.LogoutPath = "/Accounts/LogOff";
 
                 // User settings
                 options.User.RequireUniqueEmail = true;

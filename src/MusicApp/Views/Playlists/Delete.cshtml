@@ -1,10 +1,10 @@
-﻿@model MusicApp.Models.PlaylistExtension
+﻿@model MusicApp.Models.Playlist
 @{
     ViewData["Title"] = "Delete";
 }
 
-<h3>Delete Playlist @Model.playlist.List?</h3>
-<form asp-action="Delete" method="post">
+<h3>Delete Playlist @Model.Name?</h3>
+<form asp-action="Remove" method="post">
     <div class="form-group">
         <input type="hidden" asp-for="PlaylistID" value="@Model.PlaylistID" />
         <button class="btn btn-warning btn-small" type="submit">Delete</button>
