@@ -54,11 +54,11 @@ namespace MusicApp.Controllers
         }
         
         [HttpPost]
-        public IActionResult Add(int? id, int PlaylistID)
+        public IActionResult Add(int id, int PlaylistID)
         {
-            var album = _context.Albums.SingleOrDefault(a => a.AlbumID == id);
-            var playlist = _context.Playlists.SingleOrDefault(p => p.PlaylistID == PlaylistID);
-            PlaylistExtension playListAlbums = new PlaylistExtension { AlbumID = album.AlbumID, PlaylistID = PlaylistID };
+            //var album = _context.Albums.SingleOrDefault(a => a.AlbumID == id);
+            //var playlist = _context.Playlists.SingleOrDefault(p => p.PlaylistID == PlaylistID);
+            PlaylistExtension playListAlbums = new PlaylistExtension { AlbumID = id, PlaylistID = PlaylistID };
             if (ModelState.IsValid)
             {
                 _context.Add(playListAlbums);
@@ -76,16 +76,17 @@ namespace MusicApp.Controllers
             return View(album);
         }
 
-        public IActionResult Details()
+        [HttpPost]
+        public IActionResult Details(Playlist playlist)
         {
             return View();
         }
-
-        [HttpPost]
+        
         public IActionResult Details(int id)
         {
-            var playlist = _context.Playlists.Where(a => a.PlaylistID == id).SingleOrDefault();
-            return View(playlist);
+            var playlist = _context.Playlists.Where(p => p.PlaylistID == id);
+            ViewBag.Playlists = playlist.ToList();
+            return View(_context.Playlists.SingleOrDefault(p => p.PlaylistID == id));
         }
 
         [HttpPost]

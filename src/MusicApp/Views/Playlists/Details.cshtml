@@ -2,7 +2,7 @@
 @{
     ViewData["Title"] = "Details";
 }
-<h3>@Model.Playlist</h3>
+<h3>@Model.Name</h3>
 <input type="hidden" asp-for="PlaylistID" />
 <table class="table">
     @foreach (var album in ViewBag.Playlists)
