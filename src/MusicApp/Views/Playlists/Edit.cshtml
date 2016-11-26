@@ -8,7 +8,7 @@
 <form asp-action="Edit" method="post">
     <div class="form-group">
         <input type="hidden" asp-for="PlaylistID" />
-        <label class="col-md-1"><strong>Name</strong></label><input asp-for="Name" type="text" value="@Model.Name"/> <button type="submit">Save</button> <a href="Index">Back to List</a><br />
+        <label class="col-md-1"><strong>Name</strong></label><input asp-for="Name" type="text" value="@Model.Name"/> <button type="submit">Save</button> <a asp-action="Index">Back to List</a><br />
         <span asp-validation-for="Name" class="text-danger col-md-offset-1"></span><br />
         @*<button type="submit">Save</button> <a href="Index">Back to List</a>*@
     </div>
