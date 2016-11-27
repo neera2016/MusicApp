@@ -2,16 +2,20 @@
 @{
     ViewData["Title"] = "Details";
 }
-<h3>@Model.Name</h3>
 <input type="hidden" asp-for="PlaylistID" />
+<input type="hidden" asp-for="List" />
 <table class="table">
-    @foreach (var album in ViewBag.Playlists)
+    <thead>
+        <tr>
+            <th><h3>@Model.Name</th>
+        </tr>
+    </thead>
+    @foreach (var album in ViewBag.Playlist)
     {
-        <ol>@album</ol>
+        <ol>@Model.List</ol>
     }
-    <br />
-    <div>
-        <a class="btn btn-default" asp-controller="Albums" asp-action="Index">Add more albums</a>
-        <a class="btn btn-default" asp-action="Index">Back to Playlist</a>
-    </div>
 </table>
+<div>
+    <a class="btn btn-default" asp-controller="Albums" asp-action="Index">Add more albums</a>
+    <a class="btn btn-default" asp-action="Index">Back to Playlist</a>
+</div>
