@@ -63,9 +63,9 @@ namespace MusicApp.Controllers
             {
                 _context.Add(playListAlbums);
                 _context.SaveChanges();
-                return RedirectToAction("Index");
+                return RedirectToAction("Details");
             }
-            return View(playListAlbums);
+            return View(/*playListAlbums*/);
         }
 
         public IActionResult Add(int? id)
