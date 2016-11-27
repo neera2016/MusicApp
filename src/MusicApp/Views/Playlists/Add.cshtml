@@ -4,7 +4,7 @@
     ViewBag.Title = "Add To Playlist";
 }
 <h3>Select Playlist for "@Model.Title"</h3>
-<form>
+<form asp-action="Add" method="post">
     <input type="hidden" asp-for="AlbumID" />
     <select name="PlaylistID" asp-items="ViewBag.Playlist" class="col-md-3"></select>
     <button class="btn btn-default" type="submit" asp-route-id="AlbumID">Add</button>
