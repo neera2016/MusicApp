@@ -7,7 +7,7 @@
 <form asp-action="Add" method="post">
     <input type="hidden" asp-for="AlbumID" />
     <select name="PlaylistID" asp-items="ViewBag.Playlist" class="col-md-3"></select>
-    <button class="btn btn-default" type="submit" @*asp-route-id="PlaylistID"*@>Add</button>
-    <a class="btn btn-primary" asp-action="Index">Cancel</a>
+    <button class="btn btn-default" type="submit" asp-route-id="AlbumID">Add</button>
+    <a class="btn btn-default" asp-action="Index">Cancel</a>
 </form>
 
