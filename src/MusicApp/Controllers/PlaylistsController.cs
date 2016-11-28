@@ -65,7 +65,7 @@ namespace MusicApp.Controllers
                 _context.SaveChanges();
                 return RedirectToAction("Details");
             }
-            return View(/*playListAlbums*/);
+            return View(playListAlbums);
         }
 
         public IActionResult Add(int? id)
@@ -75,19 +75,12 @@ namespace MusicApp.Controllers
             var album = _context.Albums.SingleOrDefault(a => a.AlbumID == id);
             return View(album);
         }
-
-        [HttpPost]
-        public IActionResult Details(Playlist playlist)
-        {
-            return View();
-        }
         
         public IActionResult Details(int id)
         {
-            var playlist = _context.Playlists.Where(p => p.PlaylistID == id);
-            ViewBag.Playlist = playlist.ToList();
-            var album = _context.Albums.SingleOrDefault(a => a.AlbumID == id);
-            return View(_context.Playlists.SingleOrDefault(p => p.PlaylistID == id));
+            var playlist = _context.Playlists.SingleOrDefault(p => p.PlaylistID == id);
+            ViewBag.PlaylistExtensions = _context.PlaylistExtension.Include(a => a.album).Where(a => a.PlaylistID == id).ToList();
+            return View(playlist);            
         }
 
         [HttpPost]

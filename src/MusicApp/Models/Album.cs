@@ -25,6 +25,6 @@ namespace MusicApp.Models
 
         public int Like { get; set; }
 
-        public List<PlaylistExtension> list { get; set; }
+        public List<PlaylistExtension> List { get; set; }
     }
 }

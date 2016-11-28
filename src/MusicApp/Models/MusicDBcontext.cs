@@ -19,6 +19,7 @@ namespace MusicApp.Models
         public DbSet<Artist> Artists { get; set; }
         public DbSet<Genre> Genres { get; set; }
         public DbSet<Playlist> Playlists { get; set; }
+        public DbSet<PlaylistExtension> PlaylistExtension { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -33,7 +34,7 @@ namespace MusicApp.Models
 
             modelBuilder.Entity<PlaylistExtension>()
                 .HasOne(pl => pl.album)
-                .WithMany(l => l.list)
+                .WithMany(l => l.List)
                 .HasForeignKey(pl => pl.AlbumID);
         }
     }
