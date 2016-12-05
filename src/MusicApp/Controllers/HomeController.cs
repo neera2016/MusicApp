@@ -13,16 +13,11 @@ namespace MusicApp.Controllers
             return View();
         }
 
-        public IActionResult About()
+        public IActionResult Info()
         {
             ViewData["Message"] = "This application is used to keep track of music albums and their properties on a database.";
 
-            return View();
-        }
-
-        public IActionResult Contact()
-        {
-            ViewData["Message"] = "Your contact page.";
+            ViewData["Message2"] = "Contacts";
 
             return View();
         }
