@@ -6,12 +6,12 @@
 <a class="btn btn-success" asp-action="Create">Add an Album</a><br />
 <form class="form-inline" method="get">
     <div class="form-group">
-        <input type="text" name="SearchString" />
+        <input type="search" name="SearchString" />
     </div>
     <button class="btn btn-info btn-sm glyphicon glyphicon-search" type="submit" value="Filter"></button>
     @if (ViewBag.Search)
     {
-        <a class="btn btn-info btn-sm" href="Index">Show All</a>
+        <a class="btn btn-info btn-sm" href="/Albums">Show All</a>
     }
 </form>
 <table class="table">
@@ -33,7 +33,7 @@
             <td>@album.Price</td>
             <td>@album.Like</td>
             <td>
-                <a class="btn btn-default" asp-action="Likes" asp-route-id="@album.AlbumID">Like</a>
+                <a class="btn btn-default" asp-action="Likes" asp-route-SearchString="@ViewBag.SearchString" asp-route-id="@album.AlbumID">Like</a>
                 <a class="btn btn-default" asp-controller="Playlists" asp-action="Add" asp-route-id="@album.AlbumID">Playlist+</a>
                 <a class="btn btn-default" asp-action="Details" asp-route-id="@album.AlbumID">Details</a>
                 <a class="btn btn-default" asp-action="Edit" asp-route-id="@album.AlbumID">Edit</a>

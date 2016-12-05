@@ -172,8 +172,9 @@ namespace MusicApp.Controllers
             return RedirectToAction("Index");
         }
 
-        public IActionResult Likes(int? id)
+        public IActionResult Likes(int? id, string SearchString)
         {
+            ViewBag.SearchString = SearchString;
             var album = _context.Albums.Include(a => a.Artist).Include(g => g.Genre).SingleOrDefault(a => a.AlbumID == id);
             if (id == null)
             {
@@ -185,7 +186,7 @@ namespace MusicApp.Controllers
             }
             album.Like++;
             _context.SaveChanges();
-            return RedirectToAction("Index");
+            return RedirectToAction("Index", new { SearchString = SearchString });
         }
     }
 }
