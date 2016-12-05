@@ -9,7 +9,10 @@
         <input type="text" name="SearchString" />
     </div>
     <button class="btn btn-info btn-sm glyphicon glyphicon-search" type="submit" value="Filter"></button>
-    <button class="btn btn-info btn-sm" type="submit" value="Filter">Show All</button>
+    @if (ViewBag.Search)
+    {
+        <a class="btn btn-info btn-sm" href="Index">Show All</a>
+    }
 </form>
 <table class="table">
     <thead>

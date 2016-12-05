@@ -22,12 +22,14 @@ namespace MusicApp.Controllers
         public IActionResult Index(string SearchString, string sortOrder)
         {
             ViewBag.SearchString = SearchString;
+            ViewBag.Search = false;
             var albums = _context.Albums.Include(a => a.Artist).Include(a => a.Genre).ToList();
             if (!string.IsNullOrEmpty(SearchString))
             {
                 albums = _context.Albums.Where(a => a.Title.Contains(SearchString)
                                                 || a.Artist.Name.Contains(SearchString)
                                                 || a.Genre.Name.Contains(SearchString)).ToList();
+                ViewBag.Search = true;
             }
             ViewBag.TitleSortParm = sortOrder == "Title" ? "title_desc" : "Title";
             ViewBag.ArtistSortParm = sortOrder == "Artist" ? "artist_desc" : "Artist";
@@ -68,7 +70,6 @@ namespace MusicApp.Controllers
                     albums = albums.OrderBy(a => a.Like).ToList();
                     break;
             }
-
             return View(albums);
         }
 
