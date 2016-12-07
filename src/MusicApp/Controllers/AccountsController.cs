@@ -14,17 +14,20 @@ namespace MusicApp.Controllers
 {
     public class AccountsController : Controller
     {
+        private readonly RoleManager<ApplicationUser> _roleManager;
         private readonly UserManager<ApplicationUser> _userManager;
         private readonly SignInManager<ApplicationUser> _signInManager;
         private readonly MusicDbContext _context;
 
         public AccountsController(MusicDbContext context,
                                   UserManager<ApplicationUser> userManager,
-                                  SignInManager<ApplicationUser> signInManager)
+                                  SignInManager<ApplicationUser> signInManager,
+                                  RoleManager<ApplicationUser> roleManager)
         {
             _context = context;
             _userManager = userManager;
             _signInManager = signInManager;
+            _roleManager = roleManager;
         }
         // GET: /<controller>/
         [HttpGet]
@@ -43,7 +46,7 @@ namespace MusicApp.Controllers
             ViewData["ReturnUrl"] = returnUrl;
             if (ModelState.IsValid)
             {
-                var user = new ApplicationUser { UserName = model.Username, Email = model.Username, DateJoined = DateTime.Now };
+                var user = new ApplicationUser { UserName = model.Username, Email = model.Username, DateJoined = DateTime.Now};
                 var result = await _userManager.CreateAsync(user, model.Password);
                 if (result.Succeeded)
                 {

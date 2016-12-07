@@ -6,15 +6,21 @@
 <h3>@ViewData["Title"]</h3>
 <form asp-action="Register" asp-route-returnurl="@ViewData["ReturnUrl"]" method="post">
     <div class="form-group">
-        <label class="col-md-2">Email</label><input asp-for="Username" class="col-md-10"/><br />
+        <label class="col-md-2">Email</label><input asp-for="Username" class="col-md-10" /><br />
         <span asp-validation-for="Username" class="text-danger col-md-10 col-md-offset-2"></span><br />
     </div>
+    @if (string role = "Artist")
+    {
+        <div class="form-group">
+
+        </div>
+    }
     <div class="form-group">
-        <label class="col-md-2">Password</label><input asp-for="Password" class="col-md-10"/><br />
+        <label class="col-md-2">Password</label><input asp-for="Password" class="col-md-10" /><br />
         <span asp-validation-for="Password" class="text-danger col-md-10 col-md-offset-2"></span><br />
     </div>
     <div class="form-group">
-        <label class="col-md-2">Confirm Password</label><input asp-for="ConfirmPassword" class="col-md-10"/><br />
+        <label class="col-md-2">Confirm Password</label><input asp-for="ConfirmPassword" class="col-md-10" /><br />
         <span asp-validation-for="ConfirmPassword" class="text-danger col-md-10 col-md-offset-2"></span><br />
     </div>
     <div class="form-group">
