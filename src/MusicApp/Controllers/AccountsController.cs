@@ -14,26 +14,27 @@ namespace MusicApp.Controllers
 {
     public class AccountsController : Controller
     {
-        private readonly RoleManager<ApplicationUser> _roleManager;
+        //private readonly RoleManager<ApplicationUser> _roleManager;
         private readonly UserManager<ApplicationUser> _userManager;
         private readonly SignInManager<ApplicationUser> _signInManager;
         private readonly MusicDbContext _context;
 
         public AccountsController(MusicDbContext context,
                                   UserManager<ApplicationUser> userManager,
-                                  SignInManager<ApplicationUser> signInManager,
-                                  RoleManager<ApplicationUser> roleManager)
+                                  SignInManager<ApplicationUser> signInManager)
+                                  //RoleManager<ApplicationUser> roleManager)
         {
             _context = context;
             _userManager = userManager;
             _signInManager = signInManager;
-            _roleManager = roleManager;
+            //_roleManager = roleManager;
         }
         // GET: /<controller>/
         [HttpGet]
         [AllowAnonymous]
         public IActionResult Register(string returnUrl = null)
         {
+            ViewBag.ArtistRole = true;
             ViewData["ReturnUrl"] = returnUrl;
             return View();
         }
