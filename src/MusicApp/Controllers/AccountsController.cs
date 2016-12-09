@@ -43,9 +43,11 @@ namespace MusicApp.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Register(Register model, string returnUrl = null)
         {
+            ViewBag.ArtistRole = false;
             ViewData["ReturnUrl"] = returnUrl;
             if (ModelState.IsValid)
             {
+                ViewBag.ArtistRole = true;
                 var user = new ApplicationUser { UserName = model.Username, Email = model.Username, DateJoined = DateTime.Now};
                 var result = await _userManager.CreateAsync(user, model.Password);
                 if (result.Succeeded)

@@ -9,10 +9,11 @@
         <label class="col-md-2">Email</label><input asp-for="Username" class="col-md-10" /><br />
         <span asp-validation-for="Username" class="text-danger col-md-10 col-md-offset-2"></span><br />
     </div>
-    @if (string role = "Artist")
+    @if (ViewBag.ArtistRole)
     {
         <div class="form-group">
-
+            <label class="col-md-2">Artist Name</label><input asp-for="ArtistName" class="col-md-10" /><br />
+            <span asp-validation-for="ArtistName" class="text-danger col-md-10 col-md-offset-2"></span><br />
         </div>
     }
     <div class="form-group">

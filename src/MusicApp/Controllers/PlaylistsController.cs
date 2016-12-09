@@ -30,7 +30,7 @@ namespace MusicApp.Controllers
         public IActionResult Index()
         {
             ViewBag.User = _userManager.Users.SingleOrDefault(u => u.UserName == User.Identity.Name);
-            var playlist = _context.Playlists.ToList();
+            var playlist = _context.Playlists.Where(u => u.User.UserName == User.Identity.Name).ToList();
             return View(playlist);
         }
 

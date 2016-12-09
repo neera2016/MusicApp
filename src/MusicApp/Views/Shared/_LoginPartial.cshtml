@@ -14,14 +14,14 @@
                 @if (User.IsInRole("Artist"))
                 {
                     <ul class="dropdown-menu">
-                        <li>@Html.ActionLink("My Upcoming Events", "Register", "Account")</li>
+                        <li>@Html.ActionLink("My Upcoming Events", "Upcoming", "Events")</li>
                     </ul>
                 }
                 @if (User.IsInRole("User"))
                 {
                     <ul class="dropdown-menu">
-                        <li>@Html.ActionLink("Events I'm Attending", "Attending", "Event")</li>
-                        <li>@Html.ActionLink("Artists I'm Following", "Following", "Event")</li>
+                        <li>@Html.ActionLink("Events I'm Attending", "Attending", "Events")</li>
+                        <li>@Html.ActionLink("Artists I'm Following", "Following", "Events")</li>
                     </ul>
                 }
             </li>
