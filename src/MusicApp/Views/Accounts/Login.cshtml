@@ -26,5 +26,6 @@
     <div class="form-group">
         <button type="submit" class="btn btn-default" asp-controller="Home" asp-action="Index">Login</button>
     </div>
-    @*@Html.ActionLink("Users", "Register", "Accounts", new { Role = "User" })*@<a href="Register" asp-action="Users">Register for a User account</a>
+    @Html.ActionLink("Register for a User account", "Register", "Accounts", new { Role = "User" })
+    @Html.ActionLink("Register for an Artist account", "Register", "Accounts", new { Role = "Artist" })
 </form>
