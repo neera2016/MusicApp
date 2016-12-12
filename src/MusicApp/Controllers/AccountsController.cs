@@ -32,33 +32,43 @@ namespace MusicApp.Controllers
         // GET: /<controller>/
         [HttpGet]
         [AllowAnonymous]
-        public IActionResult Register(string returnUrl = null)
+        public IActionResult Register(string returnUrl = null, string Role = null)
         {
-            ViewBag.ArtistRole = true;
+            ViewBag.ArtistRole = false;
             ViewData["ReturnUrl"] = returnUrl;
+            if (Role == "Artist")
+            {
+                ViewBag.ArtistRole = true;
+            }
             return View();
         }
-
+        
         [HttpPost]
         [AllowAnonymous]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Register(Register model, string returnUrl = null)
         {
-            ViewBag.ArtistRole = false;
             ViewData["ReturnUrl"] = returnUrl;
             if (ModelState.IsValid)
             {
-                ViewBag.ArtistRole = true;
                 var user = new ApplicationUser { UserName = model.Username, Email = model.Username, DateJoined = DateTime.Now};
+                var artist = new ApplicationUser { UserName = model.Username, Email = model.Username, ArtistName = model.ArtistName, DateJoined = DateTime.Now };
                 var result = await _userManager.CreateAsync(user, model.Password);
+                var results = await _userManager.CreateAsync(artist, model.Password);
                 if (result.Succeeded)
                 {
                    await _signInManager.SignInAsync(user, isPersistent: false);
                    return RedirectToLocal(returnUrl);
                 }
+                if (results.Succeeded)
+                {
+                    await _signInManager.SignInAsync(artist, isPersistent: false);
+                    return RedirectToLocal(returnUrl);
+                }
             }
 
             // If we got this far, something failed, redisplay form
+            ViewBag.ArtistRole = true;
             return View(model);
         }
         [HttpGet]
