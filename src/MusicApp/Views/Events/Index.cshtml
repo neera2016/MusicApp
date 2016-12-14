@@ -1,5 +1,16 @@
-﻿@*
-    For more information on enabling MVC for empty projects, visit http://go.microsoft.com/fwlink/?LinkID=397860
-*@
-@{
+﻿@model MusicApp.Models.Event
+@{ 
+    ViewData["Title"] = "Events";
 }
+<h2>All Upcoming Events</h2>
+<table class="table">
+    <tr>
+        <td>
+            <time datetime="2014-09-20" class="icon">
+                <em>Saturday</em>
+                <strong>September</strong>
+                <span>20</span>
+            </time>
+        </td>
+    </tr>
+</table>

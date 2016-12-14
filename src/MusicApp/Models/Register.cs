@@ -11,6 +11,7 @@ namespace MusicApp.Models
         [Required(ErrorMessage = "The Email is required.")]
         public string Username { get; set; }
 
+        
         [Required(ErrorMessage = "Artist name is required.")]
         public string ArtistName { get; set; }
 
